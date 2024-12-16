@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/light_sky_blue"
+
+    android:gravity="center_horizontal">
+
+    <!-- Title -->
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="GET IN TOUCH"
+android:textColor="@android:color/holo_orange_dark"
+android:textSize="18sp"
+android:textStyle="bold"
+android:layout_marginBottom="16dp"/>
+
+    <!-- Contact Information -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:gravity="center">
+
+<!-- Location -->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_location"
+        android:contentDescription="Location Icon"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bizerte"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:gravity="center"/>
+</LinearLayout>
+
+<!-- Phone -->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginHorizontal="16dp">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_phone"
+        android:contentDescription="Phone Icon"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+216598921"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:gravity="center"/>
+</LinearLayout>
+
+<!-- Email -->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_email"
+        android:contentDescription="Email Icon"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="d@gmail.com"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:gravity="center"/>
+</LinearLayout>
+</LinearLayout>
+
+    <!-- Follow Us -->
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="FOLLOW US"
+android:textColor="@android:color/holo_orange_dark"
+android:textSize="18sp"
+android:textStyle="bold"
+android:layout_marginTop="16dp"/>
+
+    <!-- Social Media Icons -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:gravity="center"
+android:layout_marginTop="8dp">
+
+<ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:src="@drawable/ic_facebook"
+    android:contentDescription="Facebook Icon"/>
+
+
+<ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:src="@drawable/ic_youtube"
+    android:contentDescription="YouTube Icon"
+    android:layout_marginLeft="16dp"/>
+
+<ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:src="@drawable/ic_instagram"
+    android:contentDescription="Instagram Icon"
+    android:layout_marginLeft="16dp"/>
+</LinearLayout>
+
+    </LinearLayout>

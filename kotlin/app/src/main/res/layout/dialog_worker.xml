@@ -1,0 +1,84 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <EditText
+                android:id="@+id/worker_firstname_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name" />
+
+        <EditText
+                android:id="@+id/worker_lastname_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name" />
+
+        <EditText
+                android:id="@+id/worker_occupation_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Occupation" />
+
+        <EditText
+                android:id="@+id/worker_experience_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Experience (years)" />
+
+        <EditText
+                android:id="@+id/worker_service_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Service" />
+
+        <EditText
+                android:id="@+id/worker_email_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email" />
+
+        <EditText
+                android:id="@+id/worker_address_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address" />
+
+        <EditText
+                android:id="@+id/worker_city_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City" />
+
+        <EditText
+                android:id="@+id/worker_phone_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone" />
+
+        <EditText
+                android:id="@+id/worker_post_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Post" />
+
+        <EditText
+                android:id="@+id/worker_service_description_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Service Description" />
+
+        <EditText
+                android:id="@+id/worker_dob_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date of Birth (YYYY-MM-DD)" />
+
+    </LinearLayout>
+</ScrollView>

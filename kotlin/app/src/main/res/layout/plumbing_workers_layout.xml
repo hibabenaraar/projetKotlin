@@ -1,0 +1,45 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/plumbing_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plumbing Workers"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:textColor="@android:color/black" />
+
+        <!-- Content (add content like workers list here) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is the plumbing workers section."
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/plumbing_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        <!-- FloatingActionButton for adding a new worker -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_worker_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:src="@android:drawable/ic_input_add"
+                android:contentDescription="Add Worker" />
+
+    </LinearLayout>
+</ScrollView>

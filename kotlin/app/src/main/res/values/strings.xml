@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Project1</string>
+    <string name="feature_title">Feature Title</string>
+    <string name="feature_description">Short description of the feature.</string>
+    <string name="image_description">Image feature</string>
+
+</resources>

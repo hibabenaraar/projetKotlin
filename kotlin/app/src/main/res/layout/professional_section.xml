@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/light_sky_blue"
+    android:padding="16dp"
+    android:layout_marginTop="40dp"
+    android:weightSum="2"
+    android:paddingBottom="32dp"> <!-- Adjusted weightSum for balance -->
+
+    <!-- Left side: Image -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="286dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="311dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/professional_img" />
+    </LinearLayout>
+
+    <!-- Right side: Text and button -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Title -->
+
+        <!-- Description -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="We Provide Professional\nHome Services."
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="We offer high-quality services tailored to meet your needs, ensuring that your home is maintained to the highest standard."
+            android:textColor="@android:color/black"
+            android:textSize="16sp" /> <!-- Match text size with slider style -->
+
+        <!-- Read More button -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Read More"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+</LinearLayout>
