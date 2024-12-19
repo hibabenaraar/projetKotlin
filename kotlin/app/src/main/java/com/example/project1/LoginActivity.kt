@@ -1,18 +1,26 @@
 package com.example.project1
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.*
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,10 +28,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
 
-    // Retrofit interface for login
     interface LoginInterface {
         @FormUrlEncoded
-        @POST("realms/realm-ebank/protocol/openid-connect/token")
+        @POST("realms/realm-ebank/protocol/openid-connect/token/")
         suspend fun getAccessToken(
             @Field("client_id") clientId: String,
             @Field("client_secret") clientSecret: String,
@@ -34,12 +41,17 @@ class LoginActivity : AppCompatActivity() {
         ): retrofit2.Response<AccessToken>
     }
 
-    // Retrofit client setup
-    private val loginInterface = Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:8180/") // Correct base URL for your login service
+    private val loginInterface: LoginInterface = Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:8180/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(LoginInterface::class.java)
+
+    data class AccessToken(
+        @SerializedName("access_token") val accessToken: String?,
+        @SerializedName("expires_in") val expiresIn: Int?,
+        @SerializedName("refresh_token") val refreshToken: String?
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,34 +65,13 @@ class LoginActivity : AppCompatActivity() {
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                loginAsAdmin(username, password)
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Please enter both username and password", Toast.LENGTH_SHORT).show()
+                loginAsAdmin(username, password)
             }
         }
     }
-
-    data class AccessToken (
-        @SerializedName("access_token")
-        val accessToken: String,
-        @SerializedName("expires_in")
-        val expiresIn: Int,
-        @SerializedName("refresh_expires_in")
-        val refreshExpiresIn: Int,
-        @SerializedName("refresh_token")
-        val refreshToken: String,
-        @SerializedName("token_type")
-        val tokenType: String,
-        @SerializedName("id_token")
-        val idToken: String,
-        @SerializedName("not_before_policy")
-        val notBeforePolicy: Int,
-        @SerializedName("session_state")
-        val sessionState: String,
-        @SerializedName("scope")
-        val scope: String
-    )
 
     private fun loginAsAdmin(username: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -94,19 +85,19 @@ class LoginActivity : AppCompatActivity() {
                     password = password
                 )
 
-                if (response.isSuccessful) {
-                    response.body()?.accessToken?.let { accessToken ->
-                        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
-                        sharedPreferences.edit().putString("access_token", accessToken).apply()
-
-                        withContext(Dispatchers.Main) {
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        val accessToken = response.body()
+                        if (accessToken != null && accessToken.accessToken != null && accessToken.refreshToken != null) {
+                            saveToken("access_token", accessToken.accessToken)
+                            saveToken("refresh_token", accessToken.refreshToken)
+                            navigateToMainActivity()
+                        } else {
+                            Toast.makeText(this@LoginActivity, "Invalid response from server", Toast.LENGTH_SHORT).show()
                         }
-                    }
-                } else {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(this@LoginActivity, "Login failed: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Toast.makeText(this@LoginActivity, "Login failed: $errorBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
@@ -115,5 +106,16 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun saveToken(key: String, value: String) {
+        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        sharedPreferences.edit().putString(key, value).apply()
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
